@@ -1,15 +1,20 @@
 package inventory;
 
+import java.util.Random;
+
 /**
  * @author SamJay
  */
-public class RandomNumberGenerator {
+public final class RandomNumberGenerator {
 
     int minimumValue;
     int maximumValue;
 
     //defaultConstructor
     public RandomNumberGenerator() {
+//        this.maximumValue=setMinValue();
+//        this.maximumValue=setMaxValue();
+        
     }
 
     //non-default constructor
@@ -21,12 +26,14 @@ public class RandomNumberGenerator {
     /*
     *setters
      */
-    public void setMinValue(int minValue) {
-        this.minimumValue = minValue;
+    public int setMinValue() {
+        Random rand=new Random();
+        return Math.abs((rand.nextInt()%5))+1;
     }
 
-    public void setMaxValue(int maxValue) {
-        this.maximumValue = maxValue;
+    public int setMaxValue() {
+       Random rand=new Random();
+       return Math.abs(rand.nextInt()%11);
     }
 
     /*
@@ -46,4 +53,5 @@ public class RandomNumberGenerator {
     public String toString() {
         return "";
     }
+   
 }
