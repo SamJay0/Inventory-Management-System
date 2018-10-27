@@ -1,6 +1,8 @@
 package inventory;
 
+import java.util.HashMap;
 import java.util.InputMismatchException;
+import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -14,57 +16,60 @@ public class Product {
     double price;
     int qtyOnHand;
     int minOrderQty;
+    private Scanner in = new Scanner(System.in);
 
     //non-default contructor
-    public Product(String name,String desc,double price,int qtyOnHand,int minOrderQty) {
-        this.name=name;
-        this.desc=desc;
-        this.price=price;
-        this.qtyOnHand=qtyOnHand;
-        this.minOrderQty=minOrderQty;
+    public Product(String name, String desc, double price, int qtyOnHand, int minOrderQty) {
+        this.name = name;
+        this.desc = desc;
+        this.price = price;
+        this.qtyOnHand = qtyOnHand;
+        this.minOrderQty = minOrderQty;
     }
 
     //default constructor
     public Product() {
 //        boolean mismatch=false;
-        Scanner scan=new Scanner(System.in);
-        Random rand=new Random();
-       System.out.print("Enter ProductName: ");
-        this.name =scan.nextLine();
-         System.out.print("Enter Description: ");
-        this.desc =scan.nextLine();
-         System.out.print("Enter Price: ");
-         try{
-        this.price = scan.nextDouble();
-         }catch(InputMismatchException e){
-            System.out.println("price should be in figures!!.Enter price again: ");
-            this.price=scan.nextDouble();
-         }
-         RandomNumberGenerator randomgen=new RandomNumberGenerator();
+        Scanner scan = new Scanner(System.in);
+        Random rand = new Random();
+        System.out.print("Enter ProductName: ");
+        this.name = scan.nextLine();
+        System.out.print("Enter Description: ");
+        this.desc = scan.nextLine();
+        System.out.print("Enter Price: ");
+        try {
+            this.price = scan.nextDouble();
+        } catch (InputMismatchException e) {
+            System.out.println("price should be in figures!!. ");
+            return;
+        }
+        RandomNumberGenerator randomgen = new RandomNumberGenerator();
         //generate qty on hand
-        this.qtyOnHand=randomgen.setMaxValue();
+        this.qtyOnHand = randomgen.setMaxValue();
         //generate random number for min OrderQuantity
-        this.minOrderQty =randomgen.setMinValue();
-        System.out.println(toString());
-        
+        this.minOrderQty = randomgen.setMinValue();
+        System.out.println();
     }
 
     /*
     *setters
      */
     //set productName
-    public void setName(String name) {
-        this.name = name;
+    public String setName() {
+        System.out.println("Enter productName: ");
+        return in.nextLine();
     }
 
     //set description
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public String setDesc() {
+        System.out.println("Enter productName: ");
+        return in.nextLine();
     }
 
     //sePrice
-    public void setPrice(double price) {
-        this.price = price;
+    public int setPrice(double price) {
+        System.out.println("Enter productName: ");
+        return in.nextInt();
     }
 
     //set minQty to order
@@ -79,10 +84,11 @@ public class Product {
     public String getName() {
         return name;
     }
-    
-    public int getqtyOnHand(){
+
+    public int getqtyOnHand() {
         return qtyOnHand;
     }
+
     public String getDesc() {
         return desc;
     }
@@ -102,12 +108,22 @@ public class Product {
 //                +" \nprice: $"+price+" \nminOrder: "+minOrderQty+" items");
 //    }
     @Override
-    public final  String toString() {
+    public final String toString() {
         return "\tProductName: " + name + " \n\tDescription: " + desc + " \n\tPrice $" + price
-                +"\n\tQuantityOnHand: "+qtyOnHand+ " items \n\tminOrder: " + minOrderQty + " items";
+                + "\n\tQuantityOnHand: " + qtyOnHand + " items \n\tminOrder: " + minOrderQty + " items\n";
     }
-//    public static void main(String[] args){
-//        Product product=new Product();
+
+//    public static void main(String[] args) {
+//        Map<Integer, Product> listOfProductss = new HashMap<>();
+//        for (int i = 0; i < 2; i++) {
+//            Product product = new Product();
+////             System.out.println(product.name);
+//            listOfProductss.put(i, product);
+//        }
+//        for (int i = 0; i < 2; i++) {
+//            System.out.println(listOfProductss.get(i).toString());
+//        }
+//
 //    }
 
 }

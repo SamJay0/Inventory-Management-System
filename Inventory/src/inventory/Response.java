@@ -1,13 +1,14 @@
 package inventory;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 /**
  * @author SamJay
  */
 public class Response {
+
+    Product[] products = new Product[5];
+    ProductList list = new ProductList();
 
     public Response() {
     }
@@ -39,7 +40,7 @@ public class Response {
                     break;
                 }
                 case 4: {
-                    viewProducts();
+                    viewProducts(list);
                     break;
                 }
                 case 5: {
@@ -72,8 +73,6 @@ public class Response {
             }
 
         }
-//catch(InputMismatchException e2){
-//        }
     }
 
     //register product
@@ -82,14 +81,16 @@ public class Response {
 
     public void register() {
         int count = 0;
-//        Product[] products = new Product[5];
-        Map<Integer, Product> productCollection = new HashMap<>();
-        while (count < 5) {
-            Product product = new Product();
-            productCollection.put(count, product);
+
+        while (count < products.length) {
+            products[count] = new Product();
             count++;
-            afterChoice();
+//            afterChoice();
         }
+        list.createListOfProductsRegistered(products);
+//        for (int i = 0; i < products.length; i++) {
+//            System.out.println(list.listOfProducts[i].toString());
+//        }
 
     }
 
@@ -111,7 +112,7 @@ public class Response {
                     repeatuserChoice();
                     break OUTER;
                 default:
-                   
+
                     while (choice != 'Q' && choice != 'C' && choice != 'M') {
                         System.out.print("\tinvalid choice.try Again: ");
                         choice = in.nextLine().charAt(0);
@@ -142,8 +143,10 @@ public class Response {
     }
 
     //view products
-    public static void viewProducts() {
-        System.out.println("view products");
+    public static void viewProducts(ProductList list) {
+        for (int i = 0; i < 5; i++) {
+            list.listOfProducts[i].toString();
+        }
     }
 
     //check out
@@ -154,6 +157,12 @@ public class Response {
     //get help
     public static void getHelp() {
         System.out.println("Help");
+    }
+
+    public static void main(String[] args) {
+        Response res = new Response();
+        res.register();
+
     }
 
 }

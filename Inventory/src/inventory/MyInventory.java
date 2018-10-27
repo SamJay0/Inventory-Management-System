@@ -1,6 +1,5 @@
 package inventory;
 
-
 /**
  * @author SamJay
  */
