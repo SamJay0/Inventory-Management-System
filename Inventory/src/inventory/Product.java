@@ -40,7 +40,7 @@ public class Product {
         try {
             this.price = scan.nextDouble();
         } catch (InputMismatchException e) {
-            System.out.println("price should be in figures!!. ");
+//            System.out.println("price should be in figures!!. ");
             return;
         }
         RandomNumberGenerator randomgen = new RandomNumberGenerator();

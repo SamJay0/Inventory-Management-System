@@ -7,8 +7,7 @@ import java.util.Scanner;
  */
 public class Response {
 
-    Product[] products = new Product[5];
-    ProductList list = new ProductList();
+
 
     public Response() {
     }
@@ -40,7 +39,7 @@ public class Response {
                     break;
                 }
                 case 4: {
-                    viewProducts(list);
+                    viewProducts();
                     break;
                 }
                 case 5: {
@@ -81,16 +80,23 @@ public class Response {
 
     public void register() {
         int count = 0;
-
+    Product[] products = new Product[2];
+    ProductList list = new ProductList();
         while (count < products.length) {
             products[count] = new Product();
             count++;
 //            afterChoice();
         }
         list.createListOfProductsRegistered(products);
-//        for (int i = 0; i < products.length; i++) {
-//            System.out.println(list.listOfProducts[i].toString());
-//        }
+        System.out.println("\t\t\t*******************************\n"
+                            + "\t\t\tPRODUCTS REGISTERED FOR SALE\n"
+                         + "\t\t\t*******************************");
+        for (int i = 0; i < products.length; i++) {
+            System.out.println("__________\n"
+                             + "Product "+(i+1)+":\n"
+                            + "----------");
+            System.out.print(list.listOfProducts[i].toString());
+        }
 
     }
 
@@ -143,10 +149,8 @@ public class Response {
     }
 
     //view products
-    public static void viewProducts(ProductList list) {
-        for (int i = 0; i < 5; i++) {
-            list.listOfProducts[i].toString();
-        }
+    public static void viewProducts() {
+
     }
 
     //check out
@@ -159,10 +163,10 @@ public class Response {
         System.out.println("Help");
     }
 
-    public static void main(String[] args) {
-        Response res = new Response();
-        res.register();
-
-    }
+//    public static void main(String[] args) {
+//        Response res = new Response();
+//        res.register();
+//
+//    }
 
 }
