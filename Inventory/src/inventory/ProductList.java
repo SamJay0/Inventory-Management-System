@@ -12,13 +12,6 @@ public class ProductList {
     public ProductList() {
 
     }
-
-    public void createListOfProductsRegistered(Product[] products) {
-
-        listOfProducts = products;
-
-    }
-
     //non-default constructor
     public ProductList(Product[] listOfProducts) {
         this.listOfProducts = listOfProducts;
@@ -28,6 +21,7 @@ public class ProductList {
     *setters
      */
     public void setListOfProducts(Product[] listOfProducts) {
+
         this.listOfProducts = listOfProducts;
     }
 
@@ -44,13 +38,5 @@ public class ProductList {
         return "";
     }
 
-//    public static void main(String[] args) {
-//        ProductList list = new ProductList();
-//        list.createListOfProductsRegistered();
-//        for (int i = 0; i < 2; i++) {
-//            System.out.println(list.listOfProducts[i].toString());
-//        }
-
-//    }
 
 }

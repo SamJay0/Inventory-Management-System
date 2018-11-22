@@ -1,9 +1,7 @@
 package inventory;
 
-import java.util.HashMap;
+import java.text.DecimalFormat;
 import java.util.InputMismatchException;
-import java.util.Map;
-import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -18,7 +16,7 @@ public class Product {
     int minOrderQty;
     private Scanner in = new Scanner(System.in);
 
-    //non-default contructor
+    //non-default constructor
     public Product(String name, String desc, double price, int qtyOnHand, int minOrderQty) {
         this.name = name;
         this.desc = desc;
@@ -31,17 +29,12 @@ public class Product {
     public Product() {
 //        boolean mismatch=false;
         Scanner scan = new Scanner(System.in);
-        Random rand = new Random();
-        System.out.print("Enter ProductName: ");
-        this.name = scan.nextLine();
-        System.out.print("Enter Description: ");
-        this.desc = scan.nextLine();
-        System.out.print("Enter Price: ");
+        this.name = setName();
+        this.desc = setDesc();
         try {
-            this.price = scan.nextDouble();
+            this.price =setPrice();
         } catch (InputMismatchException e) {
-//            System.out.println("price should be in figures!!. ");
-            return;
+            System.out.println("\t oops!check price!");
         }
         RandomNumberGenerator randomgen = new RandomNumberGenerator();
         //generate qty on hand
@@ -52,33 +45,28 @@ public class Product {
     }
 
     /*
-    *setters
+     *setters
      */
     //set productName
     public String setName() {
-        System.out.println("Enter productName: ");
+        System.out.print("Enter productName: ");
         return in.nextLine();
     }
 
     //set description
     public String setDesc() {
-        System.out.println("Enter productName: ");
+        System.out.print("Enter product Description: ");
         return in.nextLine();
     }
 
     //sePrice
-    public int setPrice(double price) {
-        System.out.println("Enter productName: ");
+    public int setPrice() {
+        System.out.print("Enter price: ");
         return in.nextInt();
     }
 
-    //set minQty to order
-    public void setMinOrderQty(int minOrderQty) {
-        this.minOrderQty = minOrderQty;
-    }
-
     /*
-    *getters
+     *getters
      */
     //get productName
     public String getName() {
@@ -101,29 +89,10 @@ public class Product {
         return minOrderQty;
     }
 
-//    ///display
-//    public void display(){
-//        Product product=new Product();
-//        System.out.println("ProductName: "+name+" \ndescription: "+desc
-//                +" \nprice: $"+price+" \nminOrder: "+minOrderQty+" items");
-//    }
-    @Override
     public final String toString() {
-        return "\tProductName: " + name + " \n\tDescription: " + desc + " \n\tPrice $" + price
+        DecimalFormat format = new DecimalFormat("#0.00");
+        return "\tProductName: " + name + " \n\tDescription: " + desc + " \n\tPrice $" + format.format(price)
                 + "\n\tQuantityOnHand: " + qtyOnHand + " items \n\tminOrder: " + minOrderQty + " items\n";
     }
-
-//    public static void main(String[] args) {
-//        Map<Integer, Product> listOfProductss = new HashMap<>();
-//        for (int i = 0; i < 2; i++) {
-//            Product product = new Product();
-////             System.out.println(product.name);
-//            listOfProductss.put(i, product);
-//        }
-//        for (int i = 0; i < 2; i++) {
-//            System.out.println(listOfProductss.get(i).toString());
-//        }
-//
-//    }
 
 }
