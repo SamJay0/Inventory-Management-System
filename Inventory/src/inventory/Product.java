@@ -7,7 +7,7 @@ import java.util.Scanner;
 /**
  * @author SamJay
  */
-public class Product {
+public final class Product {
 
     String name;
     String desc;
@@ -42,6 +42,7 @@ public class Product {
         //generate random number for min OrderQuantity
         this.minOrderQty = randomgen.setMinValue();
         System.out.println();
+        new DbConnector().insertData("Products",name, desc, price, qtyOnHand, minOrderQty);
     }
 
     /*
@@ -89,6 +90,7 @@ public class Product {
         return minOrderQty;
     }
 
+    @Override
     public final String toString() {
         DecimalFormat format = new DecimalFormat("#0.00");
         return "\tProductName: " + name + " \n\tDescription: " + desc + " \n\tPrice $" + format.format(price)

@@ -21,7 +21,7 @@ public class Response {
                     break;
                 }
                 case 2: {
-                    buyProduct();
+                    addToCart();
                     break;
                 }
                 case 3: {
@@ -49,7 +49,7 @@ public class Response {
                 }
             }
         } catch (Exception e) {
-             System.out.println("invalid input");
+            System.out.println("invalid input");
 
         }
     }
@@ -59,27 +59,36 @@ public class Response {
     }
 
     public void register() {
+//        int count = 0;
+//        Product[] products = new Product[2];
+//        while (count < products.length) {
+//            products[count] = new Product();
+//            count++;
+//        }
+//        System.out.println("\t\t\t*******************************\n"
+//                + "\t\t\tPRODUCTS REGISTERED FOR SALE\n"
+//                + "\t\t\t*******************************");
+//        for (int i = 0; i < products.length; i++) {
+//            System.out.println("__________\n"
+//                    + "Product " + (i + 1) + ":\n"
+//                    + "----------");
+//            System.out.print(products[i]);
+//        }
+        int maxProductsTobeRegistered = 2;
         int count = 0;
-        Product[] products = new Product[2];
-        while (count < products.length) {
-            products[count] = new Product();
+        while (count < maxProductsTobeRegistered) {
+            Product product = new Product();
             count++;
-        }
-        System.out.println("\t\t\t*******************************\n"
-                + "\t\t\tPRODUCTS REGISTERED FOR SALE\n"
-                + "\t\t\t*******************************");
-        for (int i = 0; i < products.length; i++) {
-            System.out.println("__________\n"
-                    + "Product " + (i + 1) + ":\n"
-                    + "----------");
-            System.out.print(products[i]);
         }
 
     }
 
     //buy product
-    public static void buyProduct() {
-        System.out.println("buy product");
+    public static void addToCart() {
+        Scanner in = new Scanner(System.in);
+        System.out.print("enter productName: ");
+        String name=in.nextLine();
+        
     }
 
     //remove product
@@ -89,6 +98,7 @@ public class Response {
 
     //view products
     public static void viewProducts() {
+        new DbConnector().getData("Products");
 
     }
 

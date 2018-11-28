@@ -15,7 +15,7 @@ public class UserOptions {
                 + "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+\n"
                 + "Please Select from the following options\n"
                 + "\tPress 1 to Register a product for sale\n"
-                + "\tPress 2 to Buy a product to the Cart\n"
+                + "\tPress 2 to Add  product to the Cart\n"
                 + "\tPress 3 to Remove a product from cart\n"
                 + "\tPress 4 to View all Available Products\n"
                 + "\tPress 5 to Check out\n"
