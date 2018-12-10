@@ -42,7 +42,7 @@ public final class Product {
         //generate random number for min OrderQuantity
         this.minOrderQty = randomgen.setMinValue();
         System.out.println();
-        new DbConnector().insertData("Products",name, desc, price, qtyOnHand, minOrderQty);
+        new DbConnector().insertDataToProducts(name, desc, price, qtyOnHand, minOrderQty);
     }
 
     /*

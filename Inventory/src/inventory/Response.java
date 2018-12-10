@@ -1,11 +1,14 @@
 package inventory;
 
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 /**
  * @author SamJay
  */
 public class Response {
+
+    private static Scanner in = new Scanner(System.in);
 
     public Response() {
 
@@ -43,6 +46,10 @@ public class Response {
                 case 7: {
                     break;
                 }
+                case 8: {
+                    clearData();
+                    break;
+                }
                 default: {
                     System.out.print("invalid choice. Try again: ");
                     break;
@@ -55,30 +62,22 @@ public class Response {
     }
 
     //register product
-    public void repeatChoice() {
-    }
-
     public void register() {
-//        int count = 0;
-//        Product[] products = new Product[2];
-//        while (count < products.length) {
-//            products[count] = new Product();
-//            count++;
-//        }
-//        System.out.println("\t\t\t*******************************\n"
-//                + "\t\t\tPRODUCTS REGISTERED FOR SALE\n"
-//                + "\t\t\t*******************************");
-//        for (int i = 0; i < products.length; i++) {
-//            System.out.println("__________\n"
-//                    + "Product " + (i + 1) + ":\n"
-//                    + "----------");
-//            System.out.print(products[i]);
-//        }
-        int maxProductsTobeRegistered = 2;
-        int count = 0;
-        while (count < maxProductsTobeRegistered) {
-            Product product = new Product();
-            count++;
+        int maxProductsTobeRegistered = 5;
+        System.out.print("enter number of products you want to register for sale:");
+        int numberOfProductsToRegister = in.nextInt();
+        if (numberOfProductsToRegister > maxProductsTobeRegistered) {
+            JOptionPane.showMessageDialog(null, "Sorry! Only a maximum of 5 products can be registered");
+            return;
+        } if(numberOfProductsToRegister<1){
+             JOptionPane.showMessageDialog(null, "should be atleast 1");
+            
+        }
+            int count = 0;
+            while (count < numberOfProductsToRegister) {
+                Product product = new Product();
+                count++;
+            
         }
 
     }
@@ -87,29 +86,43 @@ public class Response {
     public static void addToCart() {
         Scanner in = new Scanner(System.in);
         System.out.print("enter productName: ");
-        String name=in.nextLine();
-        
+        String name = in.nextLine();
+        new DbConnector().addToCart(name);
+
     }
 
     //remove product
     public static void removeProduct() {
-        System.out.println("remove products");
+        System.out.println("enter item to delete: ");
+        String item = in.nextLine();
+        new DbConnector().deleteItem("Cart", item);
     }
 
     //view products
     public static void viewProducts() {
+        System.out.println("\t\t--------------------------------"
+                + "\n\t\t        PRODUCTS AVAILABLE             "
+                + "\n\t\t________________________________\n");
         new DbConnector().getData("Products");
 
     }
 
     //check out
     public static void checkOut() {
-        System.out.println("checkout");
+        System.out.println("\t\t--------------------------------"
+                + "\n\t\t        PRODUCTS BOUGHT            "
+                + "\n\t\t________________________________\n");
+        new DbConnector().getData("Cart");
+        new DbConnector().deleteAllData("Cart");
     }
 
     //get help
     public static void getHelp() {
-        System.out.println("Help");
+        JOptionPane.showMessageDialog(null, "Call 0798114462");
+    }
+
+    public static void clearData() {
+        new DbConnector().deleteAllData("Products");
     }
 
 }
