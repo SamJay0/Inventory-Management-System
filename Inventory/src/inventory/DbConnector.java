@@ -182,6 +182,7 @@ public class DbConnector {
 
     //get an item from database
     public void addToCart(String item) {
+        String updateQuerry;
         String name, description;
         double price, total;
         int minOrderQuantity, quantityAtHand, quantityOrdered;
@@ -201,10 +202,9 @@ public class DbConnector {
                     total = quantityOrdered * price;
                     
                     //add to cart
+                    updateQuantity(name, quantityAtHand, quantityOrdered);
                     insertDataToCart(name, description, price, quantityOrdered, total);
-                    
-                    //update quantity
-//                    updateQuantity(name, quantityAtHand, quantityOrdered);
+                  
                     
                 } else {
                     if (minOrderQuantity < quantityAtHand) {
@@ -245,16 +245,11 @@ public class DbConnector {
 
         } catch (Exception e) {
             System.out.println("Error " + e);
-        } finally {
-            try {
-                rslt.close();
 
-            } catch (Exception e) {
-            }
         }
 
     }
-
+ 
     public void updateID(int oldID, int newID) {
         try {
             querry = "update Products set ID=" + newID + " where ID=" + oldID;
@@ -267,9 +262,9 @@ public class DbConnector {
 
     public void updateQuantity(String name, int quantityAtHand, int quantityOrdered) {
         try {
-            querry = "update Products set QuantityAtHand=" + (quantityAtHand - quantityOrdered) + " where name=" + name;
+            querry = "update Products set QuantityAtHand=" + (quantityAtHand - quantityOrdered) + " where Name=" +"\'"+ name+"\'";
             st.executeUpdate(querry);
-            JOptionPane.showMessageDialog(null, "Quantity updated");
+            //JOptionPane.showMessageDialog(null, "Quantity updated");
 
         } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e);
